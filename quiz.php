@@ -33,19 +33,28 @@
 
             <div class=" text-center">
 
-                <div id='myQuiz' class="col-12 "><form method="post">
-                    
-                    
-                    <?php
-                        echo "<span>Veuillez choisir votre tables de multiplication: </span><SELECT id='selectQuiz' name='select' value='.$i.'>";
-                        for($i=1; $i<=10; $i++){    
-                            echo "<OPTION>$i</OPTION>";
-                        }
-                        echo "</SELECT>";            
-                    ?>
-                    
-                    <input type ="submit" name="valid" value="Valider">
-                </form></div>
+                <div id='myQuiz' class="col-12 ">
+                    <form method="post">
+                        <?php
+                            echo "<span>Veuillez choisir votre tables de multiplication: </span>
+                                  <SELECT id='selectQuiz' name='select' value='.$i.'>";
+                                  
+                            // for($i=1; $i<=10; $i++){    
+                            //     echo "<OPTION>$i</OPTION>";
+                            // }
+                            
+                            for ($i=1; $i <= 10; $i++) { 
+                                if ($i == $_POST['select']) {
+                                    echo '<option value="'.$i.'" selected >Table de '.$i.'</option>';
+                                } else {
+                                    echo '<option value="'.$i.'" >Table de '.$i.'</option>';
+                                }
+                            }echo "</SELECT>";            
+                        ?>
+                        
+                        <input type ="submit" name="valid" value="Valider">
+                    </form>
+                </div>
 
 
                 <div id="question"  >

@@ -15,7 +15,7 @@
          <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
          <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet"> 
          <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet"> 
-
+       
     </head>
     <body class="container-fluid">
         
@@ -34,21 +34,24 @@
             <div class=" text-center">
                 <!-- menu deroulante   -->
                 <form action="index.php" method="post">
-                    
-                    <?php
-                        echo "<SELECT name='valu' value='.$i.'>";
-                        
-                        for($i=1; $i<11; $i++){   
-                            echo "<OPTION>$i<br></OPTION>"; 
-        
-                        }
-                        echo "</SELECT>";  
-                                  
-                    ?>
-                    
+                    <select name="valu">
+                        <?php 
+                            if(!empty($_POST) && isset($_POST['valu'])) {
+                                $table = $_POST['valu'];   
+                            }
+
+                            for ($i=1; $i <= 10; $i++) { 
+                                if ($i == $table) {
+                                    echo '<option value="'.$i.'" selected >Table de '.$i.'</option>';
+                                } else {
+                                    echo '<option value="'.$i.'" >Table de '.$i.'</option>';
+                                }
+                            }
+                        ?>
+                    </select>
                     <input type="submit" value="Affichez" />
 
-                </form><br>
+                </form>
                 <?php
                     // menu deroulante    
                     if (isset($_POST["valu"])) {
@@ -70,17 +73,30 @@
 
 
                 <!-- checkbox -->
-                <form method="post">
+                
+                <form  method="POST">
                     <h3>Revision</h3>
                     <?php
-                        for ($i=1;$i<=10;$i++){
-                            
-                            echo("<INPUT TYPE='checkbox' NAME='num[]' VALUE='$i'/>");
-                            echo(" <label class='checkmark' for='$i'>$i</label> ");
+                        for ($i=1; $i <= 10 ; $i++) { 
+                            if(!empty($_POST) && isset($_POST['num']) && in_array($i, $_POST['num'])) {
+                                //checked
+                                echo '
+                                <label class="checkmark">
+                                    <input type="checkbox" name="num[]" value="'.$i.'" checked>
+                                    '.$i.'
+                                </label>';
+                            } else {
+                                // non checked
+                                echo '
+                                <label class="checkmark">
+                                    <input type="checkbox" name="num[]" value="'.$i.'">
+                                    '.$i.'
+                                </label>';
+                            }
                         }
                     ?>
-                    <input type="submit" value="Affichez" />
-
+        
+                    <input type="submit" value="Afficher">
                 </form>
                 
                 <?php
