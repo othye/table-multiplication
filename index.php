@@ -108,13 +108,13 @@
                 ?>
             </div>
 
-            <header>
+            <footer>
                 
                 <ul id="navigation">
                     <li> <a href="#"> Top-page </a></li>
                     <li><a  href="quiz.php">Quiz</a><li>
                 </ul>
-            <header>
+            <footer>
         
         </section>
     </body>
